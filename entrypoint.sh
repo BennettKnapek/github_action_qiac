@@ -6,11 +6,13 @@ SCANID_STR="Scan launched successfully. Scan ID: "
 
 echo "Action triggered by $GITHUB_EVENT_NAME event"
 
+echo "get diff --name-only --diff-filter=ACMRT HEAD^ HEAD | wc -l"
+echo "FAILED ABOVE BECAUSE HEAD IS UNACCESSABILE"
+
 if [ $GITHUB_EVENT_NAME = "push" ] || [ $GITHUB_EVENT_NAME = "pull_request" ]
 then
     if [ $(git diff --name-only --diff-filter=ACMRT HEAD^ HEAD | wc -l) -eq "0" ]; then 
         echo "There are no files/folders to scan."
-        echo "FAILED ABOVE"
         echo "{\"version\": \"2.1.0\",\"runs\": [{\"tool\": {\"driver\": {\"name\": \"QualysIaCSecurity\",\"organization\": \"Qualys\"}},\"results\": []}]}" > response.sarif
         exit 0
     else
