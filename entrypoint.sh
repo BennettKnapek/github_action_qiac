@@ -6,7 +6,7 @@ SCANID_STR="Scan launched successfully. Scan ID: "
 
 echo "Action triggered by $GITHUB_EVENT_NAME event"
 
-echo "get diff --name-only --diff-filter=ACMRT HEAD^ HEAD | wc -l"
+$(get diff --name-only --diff-filter=ACMRT HEAD^ HEAD | wc -l)
 echo "FAILED ABOVE BECAUSE HEAD IS UNACCESSABILE"
 
 if [ $GITHUB_EVENT_NAME = "push" ] || [ $GITHUB_EVENT_NAME = "pull_request" ]
