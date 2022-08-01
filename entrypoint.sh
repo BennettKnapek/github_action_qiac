@@ -6,8 +6,6 @@ SCANID_STR="Scan launched successfully. Scan ID: "
 
 echo "Action triggered by $GITHUB_EVENT_NAME event"
 
-git diff --name-only --diff-filter=ACMRT HEAD^ HEAD | wc -l
-
 if [ $GITHUB_EVENT_NAME = "push" ] || [ $GITHUB_EVENT_NAME = "pull_request" ]
 then
     if [ $(git diff --name-only --diff-filter=ACMRT HEAD^ HEAD | wc -l) -eq "0" ]; then 
@@ -45,6 +43,7 @@ fi
  then
     echo "Scan ID:" $SCAN_ID
     qiac getresult -a $URL -u $UNAME -p $PASS -i $SCAN_ID -m SARIF -s > /raw_result.sarif
+    cat /raw_result.sarif
  fi
  
  if [ -f scan_response_*.sarif ]; then
