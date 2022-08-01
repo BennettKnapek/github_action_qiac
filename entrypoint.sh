@@ -6,6 +6,8 @@ SCANID_STR="Scan launched successfully. Scan ID: "
 
 echo "Action triggered by $GITHUB_EVENT_NAME event"
 
+git diff --name-only --diff-filter=ACMRT HEAD^ HEAD | wc -l
+
 if [ $GITHUB_EVENT_NAME = "push" ] || [ $GITHUB_EVENT_NAME = "pull_request" ]
 then
     if [ $(git diff --name-only --diff-filter=ACMRT HEAD^ HEAD | wc -l) -eq "0" ]; then 
