@@ -56,6 +56,8 @@ fi
     echo "{\"version\": \"2.1.0\",\"runs\": [{\"tool\": {\"driver\": {\"name\": \"QualysIaCSecurity\",\"organization\": \"Qualys\"}},\"results\": []}]}" > response.sarif
  fi
 
+ cat response.sarif
+
  echo "Scanning Completed at - $(date +"%Y-%m-%d %H:%M:%S")"
  #process result for annotation
  echo " "
