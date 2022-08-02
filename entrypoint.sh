@@ -43,6 +43,7 @@ fi
  then
     echo "Scan ID:" $SCAN_ID
     qiac getresult -a $URL -u $UNAME -p $PASS -i $SCAN_ID -m SARIF -s > /raw_result.sarif
+    cat /raw_result.sarif
  fi
  
  if [ -f scan_response_*.sarif ]; then
